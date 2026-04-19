@@ -59,7 +59,7 @@ const INITIAL_DATA = [
     breakfast: "白煮蛋 Eggs ×2 + 五丁包 Bun + 豆浆 Soy milk + 黑醋 Balsamic",
     lunch: "希腊鸡肉卷 Greek chicken wrap + 希腊色拉 Greek salad (feta+橄榄 olives+醋汁 dressing)",
     dinner: "蔬菜汤 Soup + 鸡棒腿 Drumstick (无饺子 no dumplings)",
-    snacks: "樱桃 Cherries 150g · 青提 Grapes 100g · 酸奶 Yogurt + 蜂蜜 honey",
+    snacks: "樱桃 Cherries 150g · 青提 Grapes 100g ·酸奶 Yogurt + 蜂蜜 honey",
     supplements: "Redoxon 半片 (VitC 500mg)",
     calories: 1577, protein: 91, fat: 56, carbs: 175, iron: 7.5, calcium: 220, fiber: 8, vitC: 500, sugar: 28, omega3: 50,
     exercise: "", burn: 0,
@@ -271,7 +271,7 @@ function Hero({ avgKcal, avgProtein, passCount, totalCount }: { avgKcal: number;
 
 function MonthlyView({ data, onDayClick, currentMonth, onMonthChange }: { data: any[]; onDayClick: (s: string) => void; currentMonth: Date; onMonthChange: (d: Date) => void }) {
   // Helper: format local date as YYYY-MM-DD (avoid toISOString UTC shift)
-  const toLocalDateStr = (d: any) => {
+  const toLocalDateStr = (d: Date) => {
     const y = d.getFullYear();
     const m = String(d.getMonth() + 1).padStart(2, "0");
     const day = String(d.getDate()).padStart(2, "0");
