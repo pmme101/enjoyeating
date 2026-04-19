@@ -184,85 +184,63 @@ const SC = {
   "excess":     { color: BRAND.shortText, bg: BRAND.shortBg, label: "过量 Excess", icon: "↑↑" },
 };
 
-function Hero({ avgKcal, avgProtein, passCount, totalCount }: { avgKcal: number; avgProtein: number; passCount: number; totalCount: number }) {
+function Hero({ avgKcal, avgProtein, passCount, totalCount }: { avgKcal: any; avgProtein: any; passCount: any; totalCount: any }) {
   return (
     <div style={{
       position: "relative",
-      padding: "60px 20px 48px",
-      background: `
-        radial-gradient(ellipse at top right, rgba(245, 201, 168, 0.55) 0%, transparent 55%),
-        radial-gradient(ellipse at bottom left, rgba(247, 237, 223, 0.9) 0%, transparent 50%),
-        linear-gradient(135deg, #3A2E24 0%, #5C4432 45%, #8B6744 100%)
-      `,
-      color: "#FDF8EE",
-      textAlign: "center",
       overflow: "hidden",
+      margin: "18px 18px 0",
+      borderRadius: 20,
+      background: `
+        radial-gradient(at 20% 30%, #FFD4A8 0%, transparent 50%),
+        radial-gradient(at 80% 20%, #A8D4C4 0%, transparent 55%),
+        radial-gradient(at 70% 80%, #F4A896 0%, transparent 50%),
+        radial-gradient(at 30% 90%, #E8D4F0 0%, transparent 45%),
+        linear-gradient(135deg, #FFF8F0 0%, #F0F8F4 100%)
+      `,
     }}>
-      {/* Decorative layer: subtle grain + vignette */}
-      <div style={{
-        position: "absolute",
-        inset: 0,
-        background: "radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.15) 100%)",
-        pointerEvents: "none",
-      }} />
+      <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.35, mixBlendMode: "multiply", pointerEvents: "none" }}>
+        <filter id="enjoyEatingGrain">
+          <feTurbulence baseFrequency="0.85" numOctaves="3" seed="5" />
+          <feColorMatrix values="0 0 0 0 0.3, 0 0 0 0 0.25, 0 0 0 0 0.2, 0 0 0 0.35 0" />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#enjoyEatingGrain)" />
+      </svg>
 
-      <div style={{ position: "relative", zIndex: 1 }}>
-        {/* Brand mark */}
-        <div style={{
-          fontFamily: BRAND.fontHero,
-          fontSize: "clamp(56px, 13vw, 78px)",
-          lineHeight: 0.95,
-          fontWeight: 400,
-          letterSpacing: "0.5px",
-          marginBottom: 6,
-          color: "#FDF8EE",
-          textShadow: "0 2px 24px rgba(0,0,0,0.25)",
-        }}>
-          EnjoyEating
+      <div style={{ position: "relative", zIndex: 2, padding: "22px 24px 26px", color: BRAND.ink }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 10.5, fontFamily: BRAND.fontBody }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,0.55)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)", padding: "4px 10px", borderRadius: 20, color: BRAND.ink, fontWeight: 500 }}>
+            <div style={{ width: 6, height: 6, borderRadius: "50%", background: BRAND.passText }}></div>
+            <span>Active</span>
+          </div>
+          <div style={{ background: "rgba(255,255,255,0.55)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)", padding: "4px 10px", borderRadius: 20, color: "#5A5040", fontSize: 10, fontWeight: 500 }}>
+            V 1.0
+          </div>
         </div>
 
-        {/* Tagline */}
-        <div style={{
-          fontFamily: BRAND.fontTagline,
-          fontStyle: "italic",
-          fontWeight: 400,
-          fontSize: 14,
-          letterSpacing: "0.08em",
-          color: "#F5E8D2",
-          opacity: 0.85,
-          marginBottom: 28,
-        }}>
-          Nourish · Track · Enjoy
-        </div>
-
-        {/* Inline stat ribbon */}
-        <div style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 14,
-          padding: "9px 18px",
-          background: "rgba(253, 248, 238, 0.08)",
-          border: "1px solid rgba(253, 248, 238, 0.15)",
-          borderRadius: 999,
-          backdropFilter: "blur(8px)",
-          fontSize: 12,
-          color: "#FDF8EE",
-        }}>
-          <span style={{ display: "flex", alignItems: "center", gap: 5 }}>
-            <span style={{ opacity: 0.6, fontSize: 11 }}>Avg</span>
-            <span style={{ fontWeight: 600 }}>{avgKcal}</span>
-            <span style={{ opacity: 0.6, fontSize: 10 }}>kcal</span>
-          </span>
-          <span style={{ opacity: 0.3 }}>·</span>
-          <span style={{ display: "flex", alignItems: "center", gap: 5 }}>
-            <span style={{ fontWeight: 600 }}>{avgProtein}g</span>
-            <span style={{ opacity: 0.6, fontSize: 10 }}>pro</span>
-          </span>
-          <span style={{ opacity: 0.3 }}>·</span>
-          <span style={{ display: "flex", alignItems: "center", gap: 5 }}>
-            <span style={{ fontWeight: 600 }}>{passCount}/{totalCount}</span>
-            <span style={{ opacity: 0.6, fontSize: 10 }}>pass</span>
-          </span>
+        <div style={{ marginTop: 44 }}>
+          <h1 style={{
+            fontFamily: BRAND.fontHero,
+            fontSize: 58,
+            fontWeight: 400,
+            lineHeight: 0.78,
+            color: BRAND.ink,
+            margin: 0,
+            letterSpacing: 0,
+          }}>
+            Enjoy Eating
+          </h1>
+          <p style={{
+            fontFamily: BRAND.fontTagline,
+            fontSize: 14,
+            fontStyle: "italic",
+            color: BRAND.inkTagline,
+            marginTop: 18,
+            marginBottom: 0,
+            fontWeight: 400,
+          }}>
+            Fuel your everyday better
+          </p>
         </div>
       </div>
     </div>
